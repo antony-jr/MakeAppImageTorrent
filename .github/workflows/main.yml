@@ -51,7 +51,6 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload AppImage Release Asset
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -60,7 +59,6 @@ jobs:
           asset_path: ./MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage
           asset_name: MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage
       - name: Upload AppImage Zsync File Release Asset
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -69,7 +67,6 @@ jobs:
           asset_path: ./MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.zsync
           asset_name: MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.zsync
       - name: Upload AppImage Torrent File Release Asset
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
