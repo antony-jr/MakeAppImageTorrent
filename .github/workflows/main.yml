@@ -32,7 +32,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -DGIT_COMMIT=$(git rev-parse --short HEAD) -DBUILD_TIME=$(datetime) ..
+          cmake -DVCPKG=ON -DGIT_COMMIT=$(git rev-parse --short HEAD) -DBUILD_TIME=$(datetime) ..
           make -j$(nproc)
 
       - name: Build AppImage
