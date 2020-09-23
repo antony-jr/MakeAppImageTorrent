@@ -21,9 +21,14 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get -y build-dep libtorrent-rasterbar
           sudo apt-get -y install libboost-chrono-dev libboost-random-dev openssl libssl-dev 
-          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
-          sudo apt-get update -qq
-          sudo apt-get -y install libtorrent-rasterbar10
+          wget -q "https://github.com/arvidn/libtorrent/releases/download/libtorrent-1.2.8/libtorrent-rasterbar-1.2.8.tar.gz"
+          tar -xvf libtorrent-rasterbar-1.2.8.tar.gz
+          cd libtorrent-rasterbar-1.2.8
+          mkdir build
+          cd build
+          cmake ..
+          make -j$(nproc)
+          sudo make install 
 
       - name: Build Project
         run: |
