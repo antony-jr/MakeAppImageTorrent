@@ -14,10 +14,12 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get -y install zsync fuse build-essential cmake
 
-      - name: Install vcpkg and other dependencies
+      - name: Install VCPKG
         uses: lukka/run-vcpkg@v4
         with:
           setupOnly: true
+
+      - name: Install libtorrent and boost
         run: |
           $VCPKG_ROOT/vcpkg integrate install
           $VCPKG_ROOT/vcpkg install boost:linux-64 
