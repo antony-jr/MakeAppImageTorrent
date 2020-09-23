@@ -15,12 +15,8 @@
 #define GIT_COMMIT "none"
 #endif
 
-#ifndef BUILD_NO
-#define BUILD_NO 1
-#endif
-
 #ifndef BUILD_TIME
-#define BUILD_TIME "Unknown"
+#define BUILD_TIME "Unknown Date/Time"
 #endif
 
 namespace {
@@ -93,8 +89,8 @@ int main(int ac, char **av) try
   //// Because the zsync file is the one which decides the 
   //// location of target file.
 
-  std::cout << "MakeAppImageTorrent (commit " << GIT_COMMIT << " ), build " 
-	    << BUILD_NO << " built on " << BUILD_TIME << "\n";
+  std::cout << "MakeAppImageTorrent (commit " << GIT_COMMIT << "), built on "
+	    << BUILD_TIME << "\n";
   std::cout << "Copyright (C) 2020, Antony Jr.\n\n";
   
   if(ac == 1) {
