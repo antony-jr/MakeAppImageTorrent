@@ -2,6 +2,8 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - master
 
 jobs:
   build:
@@ -12,7 +14,7 @@ jobs:
       - uses: lukka/get-cmake@latest
 
       - name: Install Dependencies
-        run: sudo apt-get -y install zsync fuse build-essential cmake
+        run: sudo apt-get -y install zsync fuse build-essential
 
       - name: Install VCPKG
         uses: lukka/run-vcpkg@v4
