@@ -34,7 +34,7 @@ execute_process(COMMAND ./gen_trackers_header.py ${CMAKE_BINARY_DIR} WORKING_DIR
 add_executable(MakeAppImageTorrent MakeAppImageTorrent.cc ${CMAKE_BINARY_DIR}/Trackers.hpp)
 
 if(VCPKG)
-target_link_libraries(MakeAppImageTorrent PRIVATE LibtorrentRasterbar::torrent-rasterbar torrent-rasterbar pthread)
+target_link_libraries(MakeAppImageTorrent PRIVATE LibtorrentRasterbar::torrent-rasterbar pthread)
 endif()
 
 if(NOT VCPKG)
