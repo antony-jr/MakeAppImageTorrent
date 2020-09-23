@@ -12,6 +12,8 @@ set(CMAKE_C_FLAGS "-Wall -Wextra")
 set(CMAKE_C_FLAGS_DEBUG "-g")
 set(CMAKE_C_FLAGS_RELEASE "-O3")
 
+find_package(LibtorrentRasterbar COMPONENTS torrent-rasterbar)
+
 # Include Directories.
 include_directories(${CMAKE_BINARY_DIR})
 
@@ -26,7 +28,9 @@ execute_process(COMMAND ./gen_trackers_header.py ${CMAKE_BINARY_DIR} WORKING_DIR
 
 add_executable(MakeAppImageTorrent MakeAppImageTorrent.cc ${CMAKE_BINARY_DIR}/Trackers.hpp)
 
-target_link_libraries(MakeAppImageTorrent PUBLIC torrent-rasterbar pthread)
+target_link_libraries(MakeAppImageTorrent PUBLIC LibtorrentRasterbar::torrent-rasterbar)
+
+
 
 install(
 	TARGETS MakeAppImageTorrent
