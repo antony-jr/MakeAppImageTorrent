@@ -21,6 +21,15 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get -y build-dep libtorrent-rasterbar
           sudo apt-get -y install libboost-chrono-dev libboost-random-dev openssl libssl-dev 
+          
+          wget -q "https://www.openssl.org/source/openssl-1.1.1h.tar.gz"
+          tar -xvf openssl-1.1.1h.tar.gz
+          cd openssl-1.1.1h
+          ./config
+          make -j$(nproc)
+          sudo make install 
+          cd ..
+
           wget -q "https://github.com/arvidn/libtorrent/releases/download/libtorrent-1.2.8/libtorrent-rasterbar-1.2.8.tar.gz"
           tar -xvf libtorrent-rasterbar-1.2.8.tar.gz
           cd libtorrent-rasterbar-1.2.8
@@ -29,6 +38,8 @@ jobs:
           cmake ..
           make -j$(nproc)
           sudo make install 
+          cd ..
+          cd ..
 
       - name: Build Project
         run: |
