@@ -106,7 +106,7 @@ int main(int ac, char **av) try
   std::string full_path = file;
 
   std::cout << "Outfile: " << outfile << std::endl;
-  std::cout << "Target File: ";
+  std::cout << "Target File: " << full_path << std::endl;
 
   lt::file_storage fs;
   if (full_path[0] != '/')

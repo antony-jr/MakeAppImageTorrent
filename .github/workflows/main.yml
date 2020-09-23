@@ -43,8 +43,6 @@ jobs:
           
           ./MakeAppImageTorrent*-x86_64.AppImage MakeAppImageTorrent*-x86_64.AppImage
           
-          zsyncmake MakeAppImageTorrent*-x86_64.AppImage
-
           echo ::set-output name=appimagefile::MakeAppImageTorrent-$VERSION-x86_64.AppImage
           echo ::set-output name=zsyncfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.zsync
           echo ::set-output name=torrentfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.torrent
@@ -80,7 +78,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{steps.appimage_build.outputs.zyncfile}}
+          asset_path: ./${{steps.appimage_build.outputs.zsyncfile}}
           asset_name: ${{steps.appimage_build.outputs.zsyncfile}}
           asset_content_type: application/octet-stream
 
