@@ -19,7 +19,9 @@ minimal python3 installed with requests for generating the trackers list.
 Download the required binaries(AppImage) from the releases and use it as below.
 
 ```
- $ ./mkappimagetorrent.AppImage YourNewAppImageWhichWillBeUploaded.AppImage
+ $ wget -O mkappimagetorrent "https://git.io/JU2eU" # Get Mark-I 
+ $ chmod +x mkappimagetorrent 
+ $ ./mkappimagetorrent YourNewAppImageWhichWillBeUploaded.AppImage
 ```
 
 Now you should have a file named as the same as your given appimage but with a 
