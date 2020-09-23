@@ -26,7 +26,6 @@ jobs:
       - name: Install libtorrent and boost
         run: |
           $VCPKG_ROOT/vcpkg integrate install
-          $VCPKG_ROOT/vcpkg install boost:x64-linux 
           $VCPKG_ROOT/vcpkg install libtorrent
 
       - name: Build Project
