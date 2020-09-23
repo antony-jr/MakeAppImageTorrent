@@ -47,8 +47,6 @@ jobs:
           echo ::set-output name=zsyncfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.zsync
           echo ::set-output name=torrentfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.torrent
 
-          ls . -altr
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
