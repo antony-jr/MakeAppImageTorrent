@@ -16,8 +16,8 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get -y install zsync fuse build-essential
-          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
-          sudo apt-get update
+          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+          sudo apt-get update -qq
           sudo apt-get -y install libtorrent-rasterbar10 libtorrent-rasterbar-dev
 
 
@@ -25,15 +25,15 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -DGIT_COMMIT=$(git rev-parse --short HEAD) -DBUILD_TIME=$(datetime) ..
+          cmake -DGIT_COMMIT=$(git rev-parse --short HEAD) -DBUILD_TIME=$(date) ..
           make -j$(nproc)
+          cd ..
 
       - name: Build AppImage
         id: appimage_build
         env:
           VERSION: git rev-parse --short HEAD
         run: |
-          cd ..
           mkdir -p appdir/usr/bin ; strip build/MakeAppImageTorrent ; cp build/MakeAppImageTorrent appdir/usr/bin/
           mkdir -p appdir/usr/share/applications ; cp MakeAppImageTorrent.desktop appdir/usr/share/applications/
           mkdir -p appdir/usr/share/icons/hicolor/256x256/apps/ 
