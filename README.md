@@ -9,6 +9,10 @@ can benefit a local network which updates the same AppImages because the data bl
 shared between the local computers which will be hundred times faster than downloading it from
 the internet.
 
+# Building
+
+To build this you need libtorrent-rasterbar and pthreads. Also you should have 
+minimal python3 installed with requests for generating the trackers list.
 
 # How to use
 
