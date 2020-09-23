@@ -29,8 +29,6 @@ jobs:
 
       - name: Build AppImage
         id: appimage_build
-        env:
-          VERSION: git rev-parse --short HEAD
         run: |
           mkdir -p appdir/usr/bin ; strip build/MakeAppImageTorrent ; cp build/MakeAppImageTorrent appdir/usr/bin/
           mkdir -p appdir/usr/share/applications ; cp MakeAppImageTorrent.desktop appdir/usr/share/applications/
@@ -43,6 +41,10 @@ jobs:
           ./linuxdeploy-x86_64.AppImage --appdir appdir --output appimage
           chmod +x MakeAppImageTorrent*-x86_64.AppImage
           ./MakeAppImageTorrent*-x86_64.AppImage MakeAppImageTorrent*-x86_64.AppImage
+          
+          echo ::set-output name=appimagefile::MakeAppImageTorrent-$VERSION-x86_64.AppImage
+          echo ::set-output name=zsyncfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.zsync
+          echo ::set-output name=torrentfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.torrent
 
       - name: Create Release
         id: create_release
@@ -63,8 +65,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage
-          asset_name: MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage
+          asset_path: ./${{steps.appimage_build.outputs.appimagefile}}
+          asset_name: ${{steps.appimage_build.outputs.appimagefile}}
           asset_content_type: application/octet-stream
 
       - name: Upload AppImage Zsync File Release Asset
@@ -73,8 +75,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.zsync
-          asset_name: MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.zsync
+          asset_path: ./${{steps.appimage_build.outputs.zyncfile}}
+          asset_name: ${{steps.appimage_build.outputs.zsyncfile}}
           asset_content_type: application/octet-stream
 
 
@@ -84,6 +86,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.torrent
-          asset_name: MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.torrent
+          asset_path: ./${{steps.appimage_build.outputs.torrentfile}}
+          asset_name: ${{steps.appimage_build.outputs.torrentfile}}
           asset_content_type: application/octet-stream
