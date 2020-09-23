@@ -16,25 +16,10 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get -y install zsync fuse build-essential
-          sudo apt-get -y install libboost-system1.58.0 libboost-system1.58-dev libboost-chrono-dev libboost-random-dev
-          wget -q "https://www.openssl.org/source/openssl-1.1.1h.tar.gz"
-          tar -xvf openssl-1.1.1h.tar.gz
-          cd openssl-1.1.1h
-          ./config
-          make -j$(nproc)
-          sudo make install 
-          cd ..
+          sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+          sudo apt-get update
+          sudo apt-get -y install libtorrent-rasterbar10 libtorrent-rasterbar-dev
 
-          wget -q "https://github.com/arvidn/libtorrent/releases/download/libtorrent-1.2.8/libtorrent-rasterbar-1.2.8.tar.gz"
-          tar -xvf libtorrent-rasterbar-1.2.8.tar.gz
-          cd libtorrent-rasterbar-1.2.8
-          mkdir build
-          cd build
-          cmake ..
-          make -j$(nproc)
-          sudo make install 
-          cd ..
-          cd ..
 
       - name: Build Project
         run: |
