@@ -40,11 +40,16 @@ jobs:
           export UPDATE_INFORMATION="gh-releases-zsync|antony-jr|MakeAppImageTorrent|latest|MakeAppImageTorrent*-x86_64.AppImage.zsync"
           ./linuxdeploy-x86_64.AppImage --appdir appdir --output appimage
           chmod +x MakeAppImageTorrent*-x86_64.AppImage
+          
           ./MakeAppImageTorrent*-x86_64.AppImage MakeAppImageTorrent*-x86_64.AppImage
           
+          zsyncmake MakeAppImageTorrent*-x86_64.AppImage
+
           echo ::set-output name=appimagefile::MakeAppImageTorrent-$VERSION-x86_64.AppImage
           echo ::set-output name=zsyncfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.zsync
           echo ::set-output name=torrentfile::MakeAppImageTorrent-$VERSION-x86_64.AppImage.torrent
+
+          ls . -altr
 
       - name: Create Release
         id: create_release
