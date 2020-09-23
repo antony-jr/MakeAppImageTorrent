@@ -16,12 +16,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get -y install zsync fuse build-essential
-          sudo cp /etc/apt/sources.list /etc/apt/sources.list~
-          sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
-          sudo apt-get update -qq
-          sudo apt-get -y build-dep libtorrent-rasterbar
-          sudo apt-get -y install libboost-chrono-dev libboost-random-dev openssl libssl-dev 
-          
+          sudo apt-get -y install libboost-system1.58.0 libboost-system1.58-dev libboost-chrono-dev libboost-random-dev
           wget -q "https://www.openssl.org/source/openssl-1.1.1h.tar.gz"
           tar -xvf openssl-1.1.1h.tar.gz
           cd openssl-1.1.1h
