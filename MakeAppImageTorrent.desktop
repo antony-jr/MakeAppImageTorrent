@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=MakeAppImageTorrent
+Type=Application
+Exec=MakeAppImageTorrent
+Icon=MakeAppImageTorrent
+Terminal=true
+Categories=System;
+Comment=Decentralize your updates with QAppImageUpdate.
