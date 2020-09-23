@@ -9,10 +9,9 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2
-      - uses: rainlabs-eu/ghaction-cmake-quality@v1  
 
       - name: Install Dependencies
-        run: sudo apt-get -y install zsync fuse build-essential libboost-system libtorrent-rasterbar8 libtorrent-rasterbar-dev
+        run: sudo apt-get -y install zsync fuse build-essential libboost-system libtorrent-rasterbar8 libtorrent-rasterbar-dev cmake
 
       - name: Build Project
         run: |
