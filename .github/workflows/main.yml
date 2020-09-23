@@ -46,19 +46,19 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          tag_name: v0.0.1
-          release_name: Release v0.0.1
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: "Automatically deployed from Github Actions."
           draft: false
           prerelease: false
 
 
       - name: Upload AppImage Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
@@ -66,7 +66,7 @@ jobs:
           asset_path: ./MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage
           asset_name: MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage
       - name: Upload AppImage Zsync File Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
@@ -74,7 +74,7 @@ jobs:
           asset_path: ./MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.zsync
           asset_name: MakeAppImageTorrent-${{steps.appimage_build.env.VERSION}}-x86_64.AppImage.zsync
       - name: Upload AppImage Torrent File Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
