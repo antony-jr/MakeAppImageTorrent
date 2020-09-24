@@ -15,10 +15,6 @@
 #define GIT_COMMIT "none"
 #endif
 
-#ifndef BUILD_TIME
-#define BUILD_TIME "Unknown Date/Time"
-#endif
-
 namespace {
 
 using namespace std::placeholders;
@@ -90,7 +86,7 @@ int main(int ac, char **av) try
   //// location of target file.
 
   std::cout << "MakeAppImageTorrent (commit " << GIT_COMMIT << "), built on "
-	    << BUILD_TIME << "\n";
+	    << __DATE__ << "\n";
   std::cout << "Copyright (C) 2020, Antony Jr.\n\n";
   
   if(ac == 1) {

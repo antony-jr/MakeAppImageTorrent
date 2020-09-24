@@ -18,9 +18,6 @@ include_directories(${CMAKE_BINARY_DIR})
 if(GIT_COMMIT)
 	add_definitions(-DGIT_COMMIT="${GIT_COMMIT}")
 endif()
-if(BUILD_TIME)
-	add_definitions(-DBUILD_TIME="${BUILD_TIME}")
-endif()
 
 execute_process(COMMAND ./gen_trackers_header.py ${CMAKE_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
